@@ -32,10 +32,8 @@ class RecipeAdapter(
                     .load(imageURL)
                     .placeholder(R.drawable.ic_launcher_background)
                     .into(imageView)
-                Log.d("Adapter", "Loading URI: $imageURL")
             } else {
                 imageView.setImageResource(R.drawable.ic_launcher_background)
-                Log.d("Adapter", "error")
             }
 
             view.setOnClickListener {

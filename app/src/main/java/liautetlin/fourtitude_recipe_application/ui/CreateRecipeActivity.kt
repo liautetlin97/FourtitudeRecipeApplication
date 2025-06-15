@@ -2,10 +2,8 @@ package liautetlin.fourtitude_recipe_application.ui
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.View.VISIBLE
 import android.widget.AdapterView
@@ -35,7 +33,6 @@ class CreateRecipeActivity : AppCompatActivity() {
     private var adapter: RecipeAdapter? = null
     private val viewModel: RecipeViewModel by viewModels()
 
-    // Permission launcher
     private val galleryPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { isGranted ->
@@ -47,7 +44,6 @@ class CreateRecipeActivity : AppCompatActivity() {
         }
     }
 
-    // Image picker launcher
     private val galleryLauncher = registerForActivityResult(
         ActivityResultContracts.GetContent()
     ) { uri ->
@@ -55,8 +51,6 @@ class CreateRecipeActivity : AppCompatActivity() {
             binding.imageViewPreview.visibility = VISIBLE
             Glide.with(this).load(uri).into(binding.imageViewPreview)
             imageUrl = uri.toString()
-            Log.d("create", "Loading URI: $imageUrl")
-
         }
     }
 
@@ -140,7 +134,6 @@ class CreateRecipeActivity : AppCompatActivity() {
                 viewModel.recipeTypes.collect { types ->
                     recipeTypes = types
                     val typeNames = recipeTypes.map { it.name }
-                    Log.d("RoomDB", "Loaded types: $types")
                     val adapter = ArrayAdapter(
                         applicationContext,
                         android.R.layout.simple_spinner_item,

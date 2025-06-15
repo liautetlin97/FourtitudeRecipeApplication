@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data></data>
 
@@ -8,101 +9,101 @@
         android:layout_height="match_parent"
         android:fillViewport="true">
 
-        <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:padding="16dp">
+
+            <Spinner
+                android:id="@+id/spinnerRecipeType"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/editTextRecipeName" />
 
             <EditText
                 android:id="@+id/editTextRecipeName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
                 android:hint="Recipe Name"
                 android:inputType="text"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <EditText
-                android:id="@+id/editTextIngredients"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:hint="Ingredients"
-                android:inputType="textMultiLine"
-                android:minLines="3"
-                android:layout_marginTop="12dp"
-                app:layout_constraintTop_toBottomOf="@id/editTextRecipeName"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <EditText
-                android:id="@+id/editTextSteps"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:hint="Steps"
-                android:inputType="textMultiLine"
-                android:minLines="3"
-                android:layout_marginTop="12dp"
-                app:layout_constraintTop_toBottomOf="@id/editTextIngredients"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/imageViewPreview"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginTop="12dp"
-                android:visibility="gone"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_launcher_background"
-                app:layout_constraintTop_toBottomOf="@id/editTextSteps"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/spinnerRecipeType" />
 
             <Button
                 android:id="@+id/buttonChooseImage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Choose Image"
-                android:backgroundTint="?android:attr/colorAccent"
                 android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@id/imageViewPreview"
+                android:backgroundTint="?android:attr/colorAccent"
+                android:text="Choose Image"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/imageViewPreview" />
 
-            <Spinner
-                android:id="@+id/spinnerRecipeType"
+            <EditText
+                android:id="@+id/editTextIngredients"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                app:layout_constraintTop_toBottomOf="@id/buttonChooseImage"
+                android:hint="Ingredients"
+                android:inputType="textMultiLine"
+                android:minLines="3"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/buttonChooseImage" />
+
+            <EditText
+                android:id="@+id/editTextSteps"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:hint="Steps"
+                android:inputType="textMultiLine"
+                android:minLines="3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/editTextIngredients" />
 
             <Button
                 android:id="@+id/buttonUpdate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="?android:attr/colorAccent"
                 android:text="Update Recipe"
                 android:textColor="@android:color/white"
-                android:backgroundTint="?android:attr/colorAccent"
-                android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@id/spinnerRecipeType"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/editTextSteps" />
 
             <Button
                 android:id="@+id/buttonDelete"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="#FFCDD2"
                 android:text="Delete Recipe"
                 android:textColor="#B71C1C"
-                android:backgroundTint="#FFCDD2"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@id/buttonUpdate"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/buttonUpdate" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

@@ -2,7 +2,6 @@ package liautetlin.fourtitude_recipe_application.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -40,7 +39,6 @@ class RecipeListActivity : AppCompatActivity() {
                 viewModel.recipeTypes.collect { types ->
                     recipeTypes = types
                     val typeNames = recipeTypes.map { it.name }
-                    Log.d("RoomDB", "Loaded types: $types")
                     val adapter = ArrayAdapter(
                         applicationContext,
                         android.R.layout.simple_spinner_item,

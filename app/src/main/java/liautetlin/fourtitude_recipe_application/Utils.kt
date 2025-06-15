@@ -33,11 +33,6 @@ object Utils {
                         "image" -> ContentUris.withAppendedId(
                             MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id
                         )
-
-                        "video" -> ContentUris.withAppendedId(
-                            MediaStore.Video.Media.EXTERNAL_CONTENT_URI, id
-                        )
-
                         else -> null
                     }
                 }

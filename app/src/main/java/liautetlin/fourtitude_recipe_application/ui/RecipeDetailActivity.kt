@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
@@ -63,7 +64,14 @@ class RecipeDetailActivity : AppCompatActivity() {
         }
 
         binding.buttonDelete.setOnClickListener {
-            deleteRecipe()
+            AlertDialog.Builder(this)
+                .setTitle("Delete Recipe")
+                .setMessage("Are you sure you want to delete this recipe?")
+                .setPositiveButton("Delete") { _, _ ->
+                    deleteRecipe()
+                }
+                .setNegativeButton("Cancel", null)
+                .show()
         }
     }
 
@@ -132,7 +140,6 @@ class RecipeDetailActivity : AppCompatActivity() {
         val selectedType =
             binding.spinnerRecipeType.selectedItemPosition.takeIf { it >= 0 }
                 ?.let { recipeTypes[it] }
-        Toast.makeText(this, "" + selectedType, Toast.LENGTH_SHORT).show()
 
         if (name.isBlank() || ingredients.isBlank() || steps.isBlank() || selectedType == null) {
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
@@ -146,7 +153,6 @@ class RecipeDetailActivity : AppCompatActivity() {
             type = selectedType.name,
             imageUri = imageUrl
         )
-        Log.d("create", "created URI: $imageUrl")
 
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -181,7 +187,6 @@ class RecipeDetailActivity : AppCompatActivity() {
         }
     }
 
-    // Permission launcher
     private val galleryPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { isGranted ->
@@ -193,7 +198,6 @@ class RecipeDetailActivity : AppCompatActivity() {
         }
     }
 
-    // Image picker launcher
     private val galleryLauncher = registerForActivityResult(
         ActivityResultContracts.GetContent()
     ) { uri ->
@@ -232,7 +236,6 @@ class RecipeDetailActivity : AppCompatActivity() {
                 }
 
                 else -> {
-                    // Request permission
                     galleryPermissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES)
                 }
             }

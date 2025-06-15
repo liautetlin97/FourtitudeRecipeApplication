@@ -2,8 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.hilt.android)
-    id("kotlin-kapt") // for Room or Hilt
-    id("dagger.hilt.android.plugin") // for Hilt DI
+    alias(libs.plugins.kotlin.kapt)
 }
 
 android {
@@ -62,11 +61,19 @@ dependencies {
     implementation(libs.firebase.auth.ktx)
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.security.crypto)
-    implementation (libs.androidx.datastore.preferences)
+    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.androidx.junit.ktx)
+    kaptAndroidTest(libs.hilt.android.compiler)
     kapt(libs.androidx.room.compiler)
     kapt(libs.glide.compiler)
     kapt(libs.hilt.compiler)
+    testImplementation(libs.hilt.android.testing)
     testImplementation(libs.junit)
+    testImplementation(libs.org.jetbrains.kotlinx.kotlinx.coroutines.test)
+    testImplementation(libs.androidx.core.testing)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.kotlin)
+    androidTestImplementation(libs.hilt.android.testing)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }
